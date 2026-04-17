@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>スマトレ 体力再生ラボ</title>
+  <meta name="description" content="30分で、動ける身体へ。スマトレ体力再生ラボは、短時間×科学的トレーニングで体力を取り戻す次世代型ラボです。" />
+  <style>
+    :root {
+      --navy: #0c1b33;
+      --navy-2: #15345f;
+      --gold: #caa24e;
+      --gold-2: #efd28e;
+      --bg: #f5f1ea;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #667085;
+      --line: #e4dccf;
+      --shadow: 0 14px 36px rgba(12, 27, 51, 0.10);
+      --max: 1160px;
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
+    .section { padding: 72px 0; }
+    .eyebrow { display: inline-block; margin-bottom: 10px; color: var(--gold); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .section-title { margin: 0 0 14px; font-size: clamp(30px, 4.6vw, 52px); line-height: 1.15; letter-spacing: -.03em; }
+    .section-lead { margin: 0; color: var(--muted); font-size: 16px; }
+    .site-header { position: sticky; top: 0; z-index: 50; background: rgba(12,27,51,.92); color: #fff; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.08); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 0; }
+    .logo { font-size: 16px; font-weight: 900; letter-spacing: .08em; }
+    .logo small { display: block; margin-top: 2px; font-size: 10px; letter-spacing: .12em; color: rgba(255,255,255,.68); }
+    .nav { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; font-size: 14px; color: rgba(255,255,255,.82); }
+    .btn, .btn-outline { display: inline-flex; align-items: center; justify-content: center; font-weight: 900; transition: .2s ease; }
+    .btn { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #241700; box-shadow: var(--shadow); border-radius: 10px; padding: 16px 24px; }
+    .btn-outline { border: 1px solid rgba(255,255,255,.20); color: #fff; background: rgba(255,255,255,.04); border-radius: 10px; padding: 16px 24px; }
+    .hero { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; padding: 40px 0 0; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 28px; align-items: stretch; }
+    .hero-copy { padding: 42px 0 56px; }
+    .hero-title { margin: 0 0 16px; font-size: clamp(42px, 6vw, 78px); line-height: 1.02; letter-spacing: -.05em; }
+    .hero-sub { margin: 0 0 24px; font-size: 20px; color: rgba(255,255,255,.88); }
+    .hero-points { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin: 28px 0 32px; }
+    .hero-point { padding: 14px 16px; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.05); border-radius: 14px; font-size: 14px; color: rgba(255,255,255,.92); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-visual { min-height: 560px; overflow: hidden; border-top-left-radius: 28px; box-shadow: var(--shadow); }
+    .hero-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .grid-2, .grid-3, .grid-4 { display: grid; gap: 18px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .card, .point-card, .voice-card, .price-card { background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: var(--radius); }
+    .card { padding: 24px; }
+    .card h3, .point-card h3, .voice-card h3, .price-card h3 { margin: 0 0 10px; font-size: 22px; line-height: 1.35; }
+    .card p, .point-card p, .voice-card p, .price-card p { margin: 0; color: var(--muted); }
+    .icon { width: 46px; height: 46px; display: inline-flex; align-items: center; justify-content: center; border-radius: 14px; background: rgba(202,162,78,.12); color: var(--gold); font-size: 22px; margin-bottom: 14px; }
+    .pain-list, .bullet-list, .faq-list { list-style: none; padding: 0; margin: 20px 0 0; }
+    .pain-list li, .bullet-list li, .faq-list li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .pain-list li:last-child, .bullet-list li:last-child, .faq-list li:last-child { border-bottom: none; }
+    .pain-list strong, .bullet-list strong, .faq-list strong { display: block; margin-bottom: 4px; }
+    .comparison-wrap { overflow-x: auto; margin-top: 24px; border-radius: 18px; box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; background: #fff; min-width: 700px; }
+    th, td { padding: 14px 16px; border: 1px solid var(--line); text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: #f8f5ef; color: var(--navy); font-weight: 900; }
+    td.highlight { color: var(--navy); font-weight: 900; background: #f8fbff; }
+    .feature-box { padding: 22px; background: linear-gradient(180deg, #fff, #fbf8f2); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
+    .feature-box h3 { margin: 0 0 8px; font-size: 18px; }
+    .feature-box p { margin: 0; color: var(--muted); font-size: 15px; }
+    .price-card { padding: 24px; }
+    .price-tag { display: block; margin: 10px 0 8px; font-size: 34px; line-height: 1.05; font-weight: 900; color: var(--navy); }
+    .price-card.featured { border: 2px solid var(--gold); transform: translateY(-4px); }
+    .label { display: inline-block; margin-bottom: 10px; padding: 6px 10px; border-radius: 999px; background: #fff5df; color: #8c620d; font-size: 12px; font-weight: 800; }
+    .cta-section { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; overflow: hidden; border-radius: 28px; box-shadow: var(--shadow); }
+    .cta-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 0; align-items: stretch; }
+    .cta-copy { padding: 38px; }
+    .cta-copy h2 { margin: 0 0 12px; font-size: clamp(30px, 4vw, 44px); line-height: 1.2; }
+    .cta-copy p { margin: 0 0 22px; color: rgba(255,255,255,.88); }
+    .cta-visual { min-height: 280px; overflow: hidden; }
+    .cta-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .sticky-bar { position: sticky; bottom: 0; z-index: 40; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+    .sticky-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; }
+    .sticky-text { color: var(--muted); font-size: 14px; }
+    footer { padding: 24px 0 80px; text-align: center; color: var(--muted); font-size: 13px; }
+    @media (max-width: 1024px) { .hero-grid, .grid-4, .grid-3, .grid-2, .cta-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .nav { display: none; } .hero-points { grid-template-columns: 1fr; } .sticky-inner { flex-direction: column; align-items: stretch; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">SUMATORE<small>体力再生ラボ</small></div>
+      <nav class="nav">
+        <a href="#problems">悩み</a>
+        <a href="#solution">解決策</a>
+        <a href="#features">特徴</a>
+        <a href="#voice">お客様の声</a>
+        <a href="#pricing">料金</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn" href="#contact">無料体験予約</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">SMART TRAINING</div>
+        <h1 class="hero-title">30分で、<br>動ける身体へ。</h1>
+        <p class="hero-sub">最近、疲れやすい。痩せにくい。体力が落ちた。<br>その悩み、年齢ではなく“身体機能の低下”かもしれません。</p>
+        <div class="hero-points">
+          <div class="hero-point">30分で完結するから、忙しくても続けやすい</div>
+          <div class="hero-point">科学的トレーニングで、体力・代謝・動きやすさを改善</div>
+          <div class="hero-point">ダイエットだけでなく、疲れにくい身体づくりにも対応</div>
+          <div class="hero-point">中高年・経営者・主婦・会社員の健康ニーズにフィット</div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="#contact">無料体験予約はこちら</a>
+          <a class="btn-outline" href="#pricing">料金を見る</a>
+        </div>
+      </div>
+      <div class="hero-visual"><img src="hero.jpg" alt="ヒーロー画像"></div>
+    </div>
+  </section>
+
+  <section id="problems" class="section">
+    <div class="container" style="margin-bottom:24px;">
+      <img src="problems.jpg" alt="悩み共感画像" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:var(--shadow);">
+    </div>
+    <div class="container grid-2">
+      <div>
+        <div class="eyebrow">Problems</div>
+        <h2 class="section-title">こんなお悩みありませんか？</h2>
+        <p class="section-lead">その不調は、気合い不足ではなく“体力の土台”が落ちているサインかもしれません。</p>
+      </div>
+      <div class="card">
+        <ul class="pain-list">
+          <li><strong>昔より疲れやすい</strong>夕方には集中力が落ちてしまう。</li>
+          <li><strong>階段で息が上がる</strong>日常生活で体力低下を感じる。</li>
+          <li><strong>体重が落ちない</strong>運動しても思うように変わらない。</li>
+          <li><strong>健康診断の数値が気になる</strong>このままで大丈夫か不安。</li>
+          <li><strong>運動したいけど時間がない</strong>1時間のジム通いは現実的じゃない。</li>
+          <li><strong>ジムに入っても続かない</strong>何をすれば良いかわからない。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="solution" class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="eyebrow">Solution</div>
+      <h2 class="section-title">スマトレ 体力再生ラボとは？</h2>
+      <p class="section-lead">短時間で、効率よく、体力を戻す。最新のスポーツ科学を活用し、持久力・筋力・代謝力・姿勢・身体バランスを整え、日常で動ける身体へ導きます。</p>
+      <div class="comparison-wrap">
+        <table>
+          <thead><tr><th>項目</th><th>一般ジム</th><th>パーソナルジム</th><th>スマトレ 体力再生ラボ</th></tr></thead>
+          <tbody>
+            <tr><td>時間</td><td>60〜90分</td><td>60分</td><td class="highlight">30分</td></tr>
+            <tr><td>継続しやすさ</td><td>低い</td><td>中</td><td class="highlight">高い</td></tr>
+            <tr><td>価格</td><td>中</td><td>高</td><td class="highlight">中</td></tr>
+            <tr><td>成果実感</td><td>低〜中</td><td>高</td><td class="highlight">高</td></tr>
+            <tr><td>通いやすさ</td><td>普通</td><td>予約制</td><td class="highlight">高い</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="container" style="margin-bottom:24px;">
+      <img src="features.jpg" alt="特徴画像" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:var(--shadow);">
+    </div>
+    <div class="container">
+      <div class="eyebrow">Features</div>
+      <h2 class="section-title">スマトレ体力再生ラボの特徴</h2>
+      <div class="grid-4">
+        <div class="feature-box"><h3>① 30分で完結</h3><p>忙しい経営者・主婦・会社員でも、生活の中に無理なく組み込めます。</p></div>
+        <div class="feature-box"><h3>② 科学的アプローチ</h3><p>感覚ではなく、身体状態を見ながら最適化するから継続しやすい。</p></div>
+        <div class="feature-box"><h3>③ 疲れにくい身体へ</h3><p>日常生活のパフォーマンス改善に直結し、仕事や家事も楽になります。</p></div>
+        <div class="feature-box"><h3>④ ダイエットにも効果的</h3><p>体力が戻ると代謝が上がり、結果として痩せやすい身体につながります。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="eyebrow">Benefit</div>
+      <h2 class="section-title">ターゲット別ベネフィット</h2>
+      <div class="grid-3">
+        <div class="point-card card"><div class="icon">⚡</div><h3>経営者</h3><p>集中力・行動力・体調管理の質が上がり、仕事のパフォーマンス向上へ。</p></div>
+        <div class="point-card card"><div class="icon">🏃</div><h3>40代50代男性</h3><p>昔のように動ける身体を取り戻し、疲れにくい毎日へ。</p></div>
+        <div class="point-card card"><div class="icon">🌿</div><h3>女性・主婦</h3><p>疲れにくく、軽やかな毎日へ。見た目と体調の両方を整えられます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="voice" class="section">
+    <div class="container" style="margin-bottom:24px;">
+      <img src="voice.jpg" alt="お客様の声画像" style="width:100%;height:320px;object-fit:cover;border-radius:20px;box-shadow:var(--shadow);">
+    </div>
+    <div class="container">
+      <div class="eyebrow">Voice</div>
+      <h2 class="section-title">お客様の声</h2>
+      <div class="grid-3">
+        <div class="voice-card card"><h3>48歳 男性経営者</h3><p>夕方の疲れが激減しました。以前より集中力が続き、仕事終わりも軽いです。</p></div>
+        <div class="voice-card card"><h3>52歳 女性</h3><p>3ヶ月で身体が軽くなり、階段の上り下りが本当に楽になりました。</p></div>
+        <div class="voice-card card"><h3>43歳 会社員</h3><p>運動嫌いでも30分なら続きました。体力が戻ると気持ちまで前向きになります。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="eyebrow">Pricing</div>
+      <h2 class="section-title">料金プラン</h2>
+      <div class="grid-3">
+        <div class="price-card"><span class="label">まずはここから</span><h3>月4回プラン</h3><span class="price-tag">12,800円</span><p>忙しい方でも無理なく始められる基本プラン。</p></div>
+        <div class="price-card featured"><span class="label">人気No.1</span><h3>月6回プラン</h3><span class="price-tag">16,800円</span><p>変化を実感しやすく、継続もしやすいおすすめプラン。</p></div>
+        <div class="price-card"><span class="label">しっかり改善</span><h3>月8回プラン</h3><span class="price-tag">19,800円</span><p>短期間で身体を整えたい方に向いた上位プラン。</p></div>
+      </div>
+      <ul class="bullet-list">
+        <li><strong>初回体力測定付き</strong>現状を把握した上で最適なスタートが切れます。</li>
+        <li><strong>無理な食事制限は前提にしない</strong>続けられる習慣づくりを重視します。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container cta-section">
+      <div class="cta-grid">
+        <div class="cta-copy">
+          <div class="eyebrow" style="color:#f2d385;">Call to Action</div>
+          <h2>今の身体を、<br>未来まで持ち越しますか？</h2>
+          <p>体力は、年齢ではなく習慣で変えられます。まずは30分、体験してください。</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn" href="mailto:info@example.com?subject=スマトレ体力再生ラボ 無料体験予約">無料体験予約</a>
+            <a class="btn-outline" href="mailto:info@example.com?subject=スマトレ体力再生ラボ 体力測定予約">体力測定を受ける</a>
+          </div>
+        </div>
+        <div class="cta-visual"><img src="cta.jpg" alt="CTA画像"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="section-title">よくある質問</h2>
+      <div class="card">
+        <ul class="faq-list">
+          <li><strong>運動が苦手でも大丈夫ですか？</strong>大丈夫です。体力や生活習慣に合わせて無理のない範囲から始められます。</li>
+          <li><strong>ダイエット目的でも利用できますか？</strong>はい。体力を戻し、代謝を上げることで痩せやすい身体づくりをサポートします。</li>
+          <li><strong>本当に30分で効果がありますか？</strong>短時間でも継続しやすく、生活に組み込みやすいことが最大の価値です。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="sticky-bar">
+    <div class="container sticky-inner">
+      <div class="sticky-text">疲れやすい・体力が落ちた・痩せにくい。そんな方へ、まずは30分の体験から。</div>
+      <a class="btn" href="#contact">無料体験予約</a>
+    </div>
+  </div>
+
+  <footer>
+    © SUMATORE 体力再生ラボ. All Rights Reserved. ※ メールアドレスは仮です。
+  </footer>
+</body>
+</html>
